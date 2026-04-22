@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>COMCEH-23 Lab</title>
+</head>
+<body>
+    <h1>Salima Abdyrasakova - COMCEH-23</h1>
+    <div id="status">Loading...</div>
+    <ul id="items"></ul>
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:5000/api/data');
+                const data = await response.json();
+                document.getElementById('status').innerText = "Data from Backend:";
+                document.getElementById('items').innerHTML = data.map(i => `<li>${i.name}</li>`).join('');
+            } catch (err) {
+                document.getElementById('status').innerText = "Error connecting to backend";
+            }
+        }
+        fetchData();
+    </script>
+</body>
+</html>
